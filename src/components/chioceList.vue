@@ -1,104 +1,105 @@
 <template>
-   <div class="specList">
-    <!-- <div v-for="(goodsValue,i) of valueMap" :key="i">
-      <p>{{i}}</p>
+  <div class="specList">
+    <div v-for="(goodsValue, i) of valueMap" :key="i">
+      <p>{{ i }}</p>
       <ul class="clearfix">
-        <li style="margin-bottom:20rpx;" :class="goodsSpec.id==index ?  'active' : ''" v-for="goodsSpec of goodsValue" :key="goodsSpec.id" @click="getSpec(goodsSpec.id)">{{ goodsSpec.value }}</li>
+        <li
+          :class="goodsSpec.id == index ? 'active' : ''"
+          v-for="goodsSpec of goodsValue"
+          :key="goodsSpec.id"
+          @click="getSpec(goodsSpec.id)"
+        >
+          {{ goodsSpec.value }}
+        </li>
       </ul>
-    </div> -->
-    <div v-for="items of lists" :key="items">
-      {{items[0]}}
-      <compon :lists="items[1]" @specValue="getValue"></compon>
     </div>
+    <!-- <div v-for="items in lists" :key="items.id">
+      {{ items[0] }}
+      <compon :lists="items[1]" @specValue="getValue"></compon>
+    </div> -->
   </div>
 </template>
 
 <script>
-import compon from './compon'
+import compon from "./compon";
 export default {
   components: {
     compon
   },
-  data () {
+  data() {
     return {
-      valueMap:{
-        重量:[
-          {id:9,specId:3,value:"33"},
-          {id:7,specId:3,value:"22"}
+      valueMap: {
+        大小: [
+          { id: 9, specId: 3, value: "小果" },
+          { id: 7, specId: 3, value: "大果" }
         ],
-        尺寸:[
-          {id:10,specId:1,value:"33"},
-          {id:8,specId:1,value:"22"}
+        重量: [
+          { id: 10, specId: 1, value: "500g" },
+          { id: 8, specId: 1, value: "1000g" }
         ]
       },
       index: -1,
-      specId: '',
-      sizeValue: '',
-      kgValue:'',
+      specId: "",
+      sizeValue: "",
+      kgValue: "",
       lists: [],
-      specKg: '',
-      specSize: ''
-    }
+      specKg: "",
+      specSize: ""
+    };
   },
   methods: {
     // 选择规格
-    // getSpec (idx) {
-    //   this.index = idx
-    //   console.log(this.index)
-    // }
-    getValue (item) {
-      console.log(item)
+    getSpec(idx) {
+      this.index = idx;
+      console.log(this.index);
+    },
+    getValue(item) {
+      console.log(item);
     }
   },
-  mounted () {
-    console.log(111)
-    this.lists = Object.entries(this.valueMap)
-    console.log(this.lists)
+  mounted() {
+    console.log(111);
+    this.lists = Object.entries(this.valueMap);
+    console.log(this.lists);
   }
-}
+};
 </script>
 
-<style scope>
-*{
-  margin: 0;
-  padding: 0;
-}
+<style lang="scss">
 .specList {
-    padding: 0 10px;
-    margin-top: 30px;
-}
-.specList ul li {
-    list-style: none;
+  padding: 0 10px;
+  margin-top: 30px;
+  span {
+    font-size: 0.3rem;
+  }
+  ul li {
     display: block;
-    width: 20PX;
-    height: 30px;
     float: left;
-    line-height: 30px;
-    color: #333;
-    font-size: 0.26rem;
+    font-size: 0.4rem;
+    padding: 0.2rem 0.3rem;
     background: #eaee0e;
     margin-right: 0.28rem;
-    min-width: 0.38rem;
-    text-align: center;
-}
-.specList p {
+    &.active {
+      color: #fff;
+      background: #eb1010;
+    }
+  }
+  p {
     color: #333;
-    margin-bottom: 20px;
+    font-size: 0.5rem;
+    margin: 0.25rem 0;
     width: 100%;
-}
-.clearfix {
-    zoom: 1;
-}
-.clearfix:before,
-.clearfix:after{
-  display:table; 
-  content:"";
-}
-.clearfix:after{
-  clear:both;
-}
-ul li.active {
-    color: #fff;
-    background: #eb1010;
+  }
+  // .clearfix {
+  //   zoom: 1;
+  // }
+  // .clearfix:before,
+  // .clearfix:after {
+  //   display: table;
+  //   content: "";
+  // }
+  // .clearfix:after {
+  //   clear: both;
+  // }
 }
 </style>
